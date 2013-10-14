@@ -4,7 +4,7 @@ class General_model extends CI_Model{
 	function getPluginList($checked = 0){
 		
 		$this->db->order_by('active','DESC');
-		$this->db->order_by('name','DESC');
+		$this->db->order_by('name','ASC');
 		$query = $this->db->get('plugins');
 		
 		$return = array();
@@ -28,6 +28,28 @@ class General_model extends CI_Model{
 		}
 		return $return;
 	}
+	
+	function addPlugin($name, $dlLink, $wikiLink, $desc, $active, $broken){
+		
+		$data = array(
+				'name'			=> $name,
+				'link_download'	=> $dlLink,
+				'link_plugin'	=> $wikiLink,
+				'description'	=> $desc,
+				'active'		=> $active,
+				'broken'		=> $broken,
+		);
+		
+		$this->db->insert('plugins', $data);
+		
+		if($this->db->affected_rows() > 0){
+			return true;
+		}
+		
+		return false;
+		
+	}
+	
 	
 	function addDungeon($name, $entrancePosX, $entrancePosY, $entrancePosZ, $desc, $other, $plugins, 
 						$finished, $public, $responsible, $hasBravery, $maxBravery, $minBravery, $rewardBravery, $costBravery, $dungeonImageFileName){

@@ -14,4 +14,19 @@ class Plugins extends CI_Controller {
 		);
 		$this->load->view('template.php', $data);
 	}
+	
+	function add(){
+		if(!$this->safety_model->isLoggedIn() || !$this->user_model->isAdmin()){
+			redirect('page');
+		}
+		$data = array(
+				'title' => "KBK - Plugin management",
+				'mainContent' => "add_plugin_view.php",
+				'description' => "En sida",
+				'keyword' => "nycklar",
+		);
+		$this->load->view('template.php', $data);
+		
+	}
+	
 }

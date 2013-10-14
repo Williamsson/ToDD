@@ -18,21 +18,21 @@ class Dungeons extends CI_Controller {
 		
 		if($this->input->post()){
 			
-// 			$this->form_validation->set_rules('entrancePosX','Entrance position X','required|integer|xss_clean');
-// 			$this->form_validation->set_rules('entrancePosY','Entrance position Y','required|integer|xss_clean');
-// 			$this->form_validation->set_rules('entrancePosZ','Entrance position Z','required|integer|xss_clean');
+			$this->form_validation->set_rules('entrancePosX','Entrance position X','required|integer|xss_clean');
+			$this->form_validation->set_rules('entrancePosY','Entrance position Y','required|integer|xss_clean');
+			$this->form_validation->set_rules('entrancePosZ','Entrance position Z','required|integer|xss_clean');
 			
-// 			$this->form_validation->set_rules('hasBravery','Has bravery','required|integer|xss_clean');
-// 			$this->form_validation->set_rules('minBravery','Minimum bravery','integer|xss_clean');
-// 			$this->form_validation->set_rules('maxBravery','Maximum bravery','integer|xss_clean');
-// 			$this->form_validation->set_rules('rewardBravery','Bravery reward','integer|xss_clean');
-// 			$this->form_validation->set_rules('costBravery','Bravery cost','integer|xss_clean');
+			$this->form_validation->set_rules('hasBravery','Has bravery','required|integer|xss_clean');
+			$this->form_validation->set_rules('minBravery','Minimum bravery','integer|xss_clean');
+			$this->form_validation->set_rules('maxBravery','Maximum bravery','integer|xss_clean');
+			$this->form_validation->set_rules('rewardBravery','Bravery reward','integer|xss_clean');
+			$this->form_validation->set_rules('costBravery','Bravery cost','integer|xss_clean');
 			
 			$this->form_validation->set_rules('dungeonName','Name','required|xss_clean');
-// 			$this->form_validation->set_rules('finished','Finished','required|integer|xss_clean');
-// 			$this->form_validation->set_rules('public','Finished','required|integer|xss_clean');
-// 			$this->form_validation->set_rules('description','Description','required|xss_clean');
-// 			$this->form_validation->set_rules('other','Other','xss_clean');
+			$this->form_validation->set_rules('finished','Finished','required|integer|xss_clean');
+			$this->form_validation->set_rules('public','Finished','required|integer|xss_clean');
+			$this->form_validation->set_rules('description','Description','required|xss_clean');
+			$this->form_validation->set_rules('other','Other','xss_clean');
 			
 			
 			if ($this->form_validation->run() == TRUE){

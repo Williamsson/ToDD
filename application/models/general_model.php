@@ -3,13 +3,19 @@ class General_model extends CI_Model{
 	
 	function getPluginList($checked = 0){
 		
+		$this->db->order_by('active','DESC');
+		$this->db->order_by('name','DESC');
 		$query = $this->db->get('plugins');
+		
 		$return = array();
 		
 		foreach ($query->result() as $row){
 			$temp = array();
 			$temp['id'] = $row->id;
 			$temp['name'] = $row->name;
+			$temp['active'] = $row->active;
+			$temp['broken'] = $row->broken;
+			$temp['desc'] = $row->description;
 			$temp['link_download'] = $row->link_download;
 			$temp['link_plugin'] = $row->link_plugin;
 			

@@ -68,7 +68,6 @@ class Plugins extends CI_Controller {
 	}
 	
 	function remove(){
-		
 		if(!$this->safety_model->isLoggedIn() || !$this->user_model->isAdmin()){
 			redirect('page');
 		}
@@ -91,10 +90,6 @@ class Plugins extends CI_Controller {
 				redirect('/plugins');
 				
 			}
-		}
-		
-		if(!$this->safety_model->isLoggedIn() || !$this->user_model->isAdmin()){
-			redirect('page');
 		}
 		
 		$data = array(

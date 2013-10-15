@@ -47,6 +47,7 @@ class Dungeon_model extends CI_Model{
 	
 	function updateDungeon($id, $name, $entrancePosX, $entrancePosY, $entrancePosZ, $desc, $other, $plugins, 
 						$finished, $public, $hasBravery, $maxBravery, $minBravery, $rewardBravery, $costBravery, $dungeonImageFileName){
+		
 		$data = array(
 			'name'			=> $name,
 			'entrancePosX'	=> $entrancePosX,
@@ -118,6 +119,19 @@ class Dungeon_model extends CI_Model{
 		}
 		
 		return $res;
+	}
+	
+	function removeDungeon($id){
+		$this->db->where('id',$id);
+		$this->db->delete('temples');
+	
+		$this->db->where('temple_id',$id);
+		$this->db->delete('temple_approvals');
+	
+		$this->db->where('temple_id',$id);
+		$this->db->delete('temple_plugins');
+		
+		return true;
 	}
 	
 	function getAllDungeons(){

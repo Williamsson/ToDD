@@ -245,4 +245,36 @@ class Dungeons extends CI_Controller {
 		
 	}
 	
+	function delete(){
+		if(!$this->safety_model->isLoggedIn() || !$this->user_model->isAdmin()){
+			redirect('admin');
+		}
+		
+		if($this->input->post()){
+			$this->form_validation->set_rules('id','The ID','required|integer|xss_clean');
+				
+			if ($this->form_validation->run() == TRUE){
+					
+				$id = $this->input->post('id');
+		
+				$result = $this->dungeon_model->removeDungeon($id);
+		
+				if($result){
+					$this->session->set_flashdata('message', "<div class='success'>Dungeon was successfully removed!</div>");
+				}else{
+					$this->session->set_flashdata('message', "<div class='error'>Removing the dungeon failed for some reason. I blame Molgan.</div>");
+				}
+				redirect('/dungeons');
+			}
+		}
+		
+		$data = array(
+				'title' 		=> "KBK - Remove dungeon",
+				'mainContent' 	=> "remove_dungeon_view.php",
+				'description' 	=> "Remove the dungeon",
+				'keyword' 		=> "nycklar",
+		);
+		$this->load->view('template.php', $data);
+	}
+	
 }

@@ -68,6 +68,12 @@ class Plugins extends CI_Controller {
 	}
 	
 	function remove(){
+		
+		if(!$this->safety_model->isLoggedIn() || !$this->user_model->isAdmin()){
+			redirect('page');
+		}
+		
+		
 		if($this->input->post()){
 			$this->form_validation->set_rules('id','The ID','required|integer|xss_clean');
 			

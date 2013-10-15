@@ -29,15 +29,21 @@
 	
 	foreach($dungeons as $dungeon){?>
 		<tr>
-			<td><?php echo $dungeon['name']?></td>
+			<td>
+				<?php 
+					if($this->safety_model->hasPermission(array('2','3'))){
+						echo "<a href='" . base_url() . "dungeons/more/" . $dungeon['id'] . "'> " . $dungeon['name'] . " </a>";
+					}else{
+						echo $dungeon['name'];
+					}
+				?>
+			</td>
 			<td><?php echo $dungeon['desc']?></td>
 			<td>
 				<?php 
 					if(!empty($dungeon['image'])){?>
 						<a href="<?php echo base_url();?>uploads/<?php echo $dungeon['image'];?>"><img src="<?php echo base_url() . "uploads/thumbs/" . $dungeon['image'];?>"/></a>
-<?php 					}else{
-						echo "No image :(";
-					}
+<?php 				}
 				?>
 			</td>
 			<td>
@@ -51,12 +57,12 @@
 			</td>
 			<td>
 				<?php
-				if($dungeon['hasBravery'] == 1){
-					echo "Yes";
-				} else{
-					echo "No";
-				}
-			?>
+					if($dungeon['hasBravery'] == 1){
+						echo "Yes";
+					} else{
+						echo "No";
+					}
+				?>
 			</td>
 		</tr>
 		

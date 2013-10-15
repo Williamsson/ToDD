@@ -1,3 +1,8 @@
+<?php 
+	if(!$this->uri->segment(3)){
+		redirect('plugins');
+	}
+?>
 <h1>Edit plugin</h1>
 <div class="col-2">
 	<?php 

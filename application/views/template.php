@@ -13,10 +13,10 @@
 			<div id="nav">
 				<ul>
 					<li><a href="<?php echo base_url();?>">Home</a></li>
-					<li><a href="<?php echo base_url();?>dungeons">List of all dungeons</a></li>
+					<li><a href="<?php echo base_url();?>dungeons">List of dungeons</a></li>
 					
 					<?php if($this->safety_model->hasPermission(array('2', '3'))):?>
-						<li><a href="<?php echo base_url();?>admin">Controlpanel</a></li>
+						<li><a href="<?php echo base_url();?>admin">Control panel</a></li>
 					<?php endif;?>
 					
 					<?php if($this->safety_model->isLoggedIn()):?>

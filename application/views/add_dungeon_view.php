@@ -16,15 +16,15 @@ tinymce.init({
 	<p>Here you may add dungeons to the system.</p>
 	
 	<?php 
-		if($this->session->flashdata('dungeonCreate')){
-			echo $this->session->flashdata('dungeonCreate');
+		if($this->session->flashdata('message')){
+			echo $this->session->flashdata('message');
 		}
 		echo validation_errors('<div class="error">','</div>');
 		echo form_open_multipart('dungeons/add');
 	?>
 		<label for="dungeonName">Name of the dungeon:*</label><br/>
 			<input type="text" name="dungeonName" value="<?php echo set_value('dungeonName'); ?>" placeholder="Dungeon name"/><br/>
-			
+		
 		<label>Image</label><br/>
 			<input type="file" title="dungeonImage" name="dungeonImage" size="20" /><br/>
 			<input type="hidden" name="max_file_size" value="2048" /> 
@@ -36,8 +36,8 @@ tinymce.init({
 			
 		<label for="hasBravery">Is this dungeon using bravery:*</label><br/>
 			<select name="hasBravery">
-				<option value="0">No</option>
 				<option value="1">Yes</option>
+				<option value="0">No</option>
 			</select><br/>
 			<label for="minBravery">Minimum bravery:</label><br/>
 				<input type="text" name="minBravery" placeholder="0" value="<?php echo set_value('minBravery'); ?>" size="2"/><br/>
@@ -50,14 +50,14 @@ tinymce.init({
 			
 		<label for="finished">Is the temple finished?:*</label><br/>
 			<select name="finished">
-				<option value="0">No</option>
 				<option value="1">Yes</option>
+				<option value="0">No</option>
 			</select><br/>
 			
 		<label for="public">Should this be viewable public?:*</label><br/>
 			<select name="public">
-				<option value="0">No</option>
 				<option value="1">Yes</option>
+				<option value="0">No</option>
 			</select><br/>
 			
 		<label for="description">Give a description of the dungeon, it will be public:*</label><br/>

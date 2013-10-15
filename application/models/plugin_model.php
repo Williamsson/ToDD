@@ -2,9 +2,9 @@
 class Plugin_model extends CI_Model{
 	
 	function getPluginList($checked = 0){
-	
+		
 		$this->db->order_by('active','DESC');
-		$this->db->order_by('name','ASC');
+		$this->db->order_by('plugin_name','ASC');
 		$query = $this->db->get('plugins');
 	
 		$return = array();
@@ -12,16 +12,16 @@ class Plugin_model extends CI_Model{
 		foreach ($query->result() as $row){
 			$temp = array();
 			$temp['id'] = $row->id;
-			$temp['name'] = $row->name;
+			$temp['name'] = $row->plugin_name;
 			$temp['version'] = $row->version;
 			$temp['update'] = $row->last_update;
 			$temp['active'] = $row->active;
 			$temp['broken'] = $row->broken;
-			$temp['desc'] = $row->description;
+			$temp['desc'] = $row->plugin_description;
 			$temp['link_download'] = $row->link_download;
 			$temp['link_plugin'] = $row->link_plugin;
-				
-			if(is_array($checked) && in_array($row->id,$checked)){
+			
+			if(is_array($checked) && in_array($row->plugin_name,$checked)){
 				$temp['checked'] = true;
 			}else{
 				$temp['checked'] = false;
@@ -34,7 +34,7 @@ class Plugin_model extends CI_Model{
 	function addPlugin($name, $version, $updated, $dlLink, $wikiLink, $desc, $active, $broken){
 	
 		$data = array(
-				'name'			=> $name,
+				'plugin_name'	=> $name,
 				'version'		=> $version,
 				'last_update'	=> $updated,
 				'link_download'	=> $dlLink,
@@ -72,7 +72,7 @@ class Plugin_model extends CI_Model{
 		foreach($query->result() as $row){
 			
 			$result['id'] = $row->id;
-			$result['name'] = $row->name;
+			$result['name'] = $row->plugin_name;
 			$result['version'] = $row->version;
 			$result['update'] = $row->last_update;
 			$result['dl_link'] = $row->link_download;
@@ -80,7 +80,6 @@ class Plugin_model extends CI_Model{
 			$result['desc'] = $row->description;
 			$result['active'] = $row->active;
 			$result['broken'] = $row->broken;
-			
 		}
 		
 		return $result;
@@ -90,14 +89,14 @@ class Plugin_model extends CI_Model{
 	function updatePlugin($id, $name, $version, $updated, $dlLink, $wikiLink, $desc, $active, $broken){
 		
 		$data = array(
-				'name'			=> $name,
-				'version'		=> $version,
-				'last_update'	=> $updated,
-				'link_download'	=> $dlLink,
-				'link_plugin'	=> $wikiLink,
-				'description'	=> $desc,
-				'active'		=> $active,
-				'broken'		=> $broken,
+				'plugin_name'		=> $name,
+				'version'			=> $version,
+				'last_update'		=> $updated,
+				'link_download'		=> $dlLink,
+				'link_plugin'		=> $wikiLink,
+				'plugin_description'=> $desc,
+				'active'			=> $active,
+				'broken'			=> $broken,
 		);
 		
 		$this->db->where('id',$id);

@@ -49,6 +49,38 @@ class User_model extends CI_Model{
 		return false;
 	}
 	
+	function updateUserPermission($id,$permission){
+		
+		$data = array(
+			'permission_id'	=> $permission,
+		);
+		
+		$this->db->where('user_id',$id);
+		$this->db->update('users_permissions',$data);
+		
+		return true;
+	}
+	
+	function getUserList(){
+		
+		$this->db->select('users.id,users.username,users.description,users_permissions.permission_id');
+		$this->db->join('users_permissions', 'users_permissions.user_id = users.id');
+		$query = $this->db->get('users');
+		
+		$return = array();
+		
+		foreach ($query->result() as $row){
+			$temp = array();
+			$temp['id'] = $row->id;
+			$temp['username'] = $row->username;
+			$temp['desc'] = $row->description;
+			$temp['permission']	= $row->permission_id;
+			$return[] = $temp;
+		}
+		return $return;
+		
+	}
+	
 	function logout(){
 		$this->session->sess_destroy();
 	}

@@ -31,4 +31,21 @@ class Safety_model extends CI_Model{
 		}
 		return false;
 	}
+	
+	function getAllPermissions(){
+		$this->db->select('id,name');
+		$query = $this->db->get('permissions');
+		
+		$return = array();
+		
+		foreach($query->result() as $row){
+			$temp = array();
+			$temp['id'] = $row->id;
+			$temp['name'] = $row->name;
+			$return[] = $temp;
+		}
+		
+		return $return;
+		
+	}
 }

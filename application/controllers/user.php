@@ -53,4 +53,33 @@ class User extends CI_Controller {
 		);
 		$this->load->view('template.php', $data);
 	}
+	
+	function updatePermission(){
+		
+		if(!$this->input->post()){
+			redirect('admin');
+		}
+		
+		$this->form_validation->set_rules('permission','Permission','integer|required|xss_clean');
+		$this->form_validation->set_rules('id','ID','integer|required|xss_clean');
+		
+		if($this->form_validation->run() == TRUE){
+			$result = $this->user_model->updateUserPermission($this->input->post('id'),$this->input->post('permission'));
+			
+			if($result){
+				$this->session->set_flashdata('message', "<div class='success'>Success! Permission changed (Need to log out and in).</div>");
+			}else{
+				$this->session->set_flashdata('message', "<div class='error'>Sadly, something went wrong.</div>");
+			}
+
+			redirect('admin/manageUsers');
+			
+		}
+		
+		echo "<pre>";
+		print_r($this->input->post());
+		die();
+		
+	}
+	
 }

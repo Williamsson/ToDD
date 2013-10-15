@@ -36,12 +36,28 @@
 					if(!empty($dungeon['image'])){?>
 						<a href="<?php echo base_url();?>uploads/<?php echo $dungeon['image'];?>"><img src="<?php echo base_url() . "uploads/thumbs/" . $dungeon['image'];?>"/></a>
 <?php 					}else{
-						echo "No image uploaded :(";
+						echo "No image :(";
 					}
 				?>
 			</td>
-			<td><?php echo $dungeon['finished']?></td>
-			<td><?php echo $dungeon['hasBravery']?></td>
+			<td>
+			<?php
+				if($dungeon['finished'] == 1){
+					echo "Yes";
+				} else{
+					echo "No";
+				}
+			?>
+			</td>
+			<td>
+				<?php
+				if($dungeon['hasBravery'] == 1){
+					echo "Yes";
+				} else{
+					echo "No";
+				}
+			?>
+			</td>
 		</tr>
 		
 <?php 		

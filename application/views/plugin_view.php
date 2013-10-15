@@ -1,16 +1,28 @@
-
+<style type="text/css" title="currentStyle">
+		@import "<?php echo base_url();?>js/datatables/media/css/demo_page.css";
+		@import "<?php echo base_url();?>js/datatables/media/css/jquery.dataTables.css";
+</style>
+<script type="text/javascript" src="<?php echo base_url();?>js/datatables/media/jquery.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>js/datatables/media/jquery.dataTables.js"></script>
+<script type="text/javascript" charset="utf-8">
+	$(document).ready(function() {
+		$('#table-3').dataTable();
+	} );
+</script>
 <a href="<?php echo base_url();?>plugins/add">Add a plugin</a><br/><br/>
 <table id="table-3">
-	<tr>
-		<th>Plugin name</th>
-		<th>Plugin description:</th>
-		<th>Currently active:</th>
-		<th>Broken:</th>
-		<th>Download link:</th>
-		<th>Link to "wiki":</th>
-		<th>Edit:</th>
-		<th>REMOVE:</th>
-	</tr>
+	<thead>
+		<tr>
+			<th>Plugin name</th>
+			<th>Plugin description:</th>
+			<th>Currently active:</th>
+			<th>Broken:</th>
+			<th>Download link:</th>
+			<th>Link to "wiki":</th>
+			<th>Edit:</th>
+			<th>REMOVE:</th>
+		</tr>
+	</thead>
 <?php 
 	$plugins = $this->general_model->getPluginList();
 	

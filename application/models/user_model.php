@@ -25,6 +25,22 @@ class User_model extends CI_Model{
 		
 	}
 	
+	function addUser($username, $password, $desc){
+		$data = array(
+				'username'		=> $username,
+				'password'		=> $password,
+				'description'	=> $desc,
+		);
+		
+		$this->db->insert('users', $data);
+		
+		if($this->db->affected_rows() > 0){
+			return true;
+		}
+		
+		return false;
+	}
+	
 	function logout(){
 		$this->session->sess_destroy();
 	}

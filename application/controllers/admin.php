@@ -11,8 +11,23 @@ class Admin extends CI_Controller {
 				'title' => "KBK - Admin",
 				'mainContent' => "admin_view.php",
 				'description' => "En sida",
-				'keyword' => "nycklar",
+				'keyword' => "",
 		);
 		$this->load->view('template.php', $data);
 	}
+	
+	public function manageUsers(){
+		if(!$this->safety_model->isLoggedIn() && $this->user_model->isAdmin()){
+			redirect('page');
+		}
+		
+		$data = array(
+				'title' => "",
+				'mainContent' => "manage_users_view.php",
+				'description' => "Manage users",
+				'keyword' => "",
+		);
+		$this->load->view('template.php', $data);
+	}
+	
 }

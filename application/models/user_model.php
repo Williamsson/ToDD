@@ -22,7 +22,6 @@ class User_model extends CI_Model{
 		}else{
 			$this->session->set_flashdata('message',"<div class='error'>Wrong username or password.</div>");
 		}
-		
 	}
 	
 	function addUser($username, $password, $desc){

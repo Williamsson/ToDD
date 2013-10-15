@@ -34,6 +34,15 @@ class User_model extends CI_Model{
 		
 		$this->db->insert('users', $data);
 		
+		$id = $this->db->insert_id();
+		
+		$data = array(
+				'user_id'		=> $id,
+				'permission_id'	=> 1,
+		);
+		
+		$this->db->insert('users_permissions', $data);
+		
 		if($this->db->affected_rows() > 0){
 			return true;
 		}

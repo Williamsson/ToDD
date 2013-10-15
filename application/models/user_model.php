@@ -4,7 +4,7 @@ class User_model extends CI_Model{
 	function login($username, $password){
 	
 		$this->db->select('username, password, id');
-		$this->db->where('username', $username);
+		$this->db->where('LOWER(username)', strtolower($username));
 		$this->db->where('password', $password);
 		
 		$query = $this->db->get('users');
@@ -13,14 +13,16 @@ class User_model extends CI_Model{
 			$usernameDB = $query->row()->username;
 			$passwordDB = $query->row()->password;
 			$userId = $query->row()->id;
-				
-			if($usernameDB == $username && $passwordDB = $password){
+			
+			if(strtolower($usernameDB) == strtolower($username) && $passwordDB = $password){
 				$this->session->set_userdata('userId', $userId);
+				echo $permId = $this->safety_model->getPermission($userId);
+				$this->session->set_userdata('permission', $permId);
 			}
+		}else{
+			$this->session->set_flashdata('message',"<div class='error'>Wrong username or password.</div>");
 		}
 		
-		$permId = $this->safety_model->getPermission($userId);
-		$this->session->set_userdata('permissionLevel',$permId);
 	}
 	
 	function logout(){
@@ -28,7 +30,7 @@ class User_model extends CI_Model{
 	}
 	
 	function isAdmin(){
-		if($this->session->userdata('permissionLevel') == 2){
+		if($this->session->userdata('permission') == 2){
 			return true;
 		}else{
 			return false;
@@ -36,7 +38,7 @@ class User_model extends CI_Model{
 	}
 	
 	function isBuilder(){
-		if($this->session->userdata('permissionLevel') == 3){
+		if($this->session->userdata('permission') == 3){
 			return true;
 		}else{
 			return false;

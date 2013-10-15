@@ -13,7 +13,8 @@ class Dungeons extends CI_Controller {
 	
 	public function add(){
 		if(!$this->safety_model->isLoggedIn() || !$this->user_model->isAdmin()){
-			redirect('page');
+			$this->session->set_flashdata('message', "<div class='error'>You don't have permission to do that.</div>");
+			redirect('admin');
 		}
 		
 		if($this->input->post()){
@@ -82,7 +83,7 @@ class Dungeons extends CI_Controller {
 				$plugins = $this->input->post('plugins');
 				$responsible = $this->session->userdata('userId');
 				
-				$result = $this->general_model->addDungeon($name, $entrancePosX, $entrancePosY, $entrancePosZ, $desc, $other, $plugins, 
+				$result = $this->dungeon_model->addDungeon($name, $entrancePosX, $entrancePosY, $entrancePosZ, $desc, $other, $plugins, 
 											$finished, $public, $responsible, $hasBravery, $maxBravery, $minBravery, $rewardBravery, $costBravery, $dungeonImageFileName);
 				
 				if($result){
@@ -93,8 +94,6 @@ class Dungeons extends CI_Controller {
 				redirect('/dungeons/add');
 			}
 		}
-		
-		
 		$data = array(
 				'title' => "ToD - Add dungeon",
 				'mainContent' => "add_dungeon_view.php",

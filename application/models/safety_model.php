@@ -23,4 +23,12 @@ class Safety_model extends CI_Model{
 			return false;
 		}
 	}
+	
+	function hasPermission($permissions){
+		$userPerm = $this->session->userdata('permission');
+		if(in_array($userPerm, $permissions)){
+			return true;
+		}
+		return false;
+	}
 }

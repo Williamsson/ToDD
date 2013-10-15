@@ -15,8 +15,8 @@
 					<li><a href="<?php echo base_url();?>">Home</a></li>
 					<li><a href="<?php echo base_url();?>dungeons">List of all dungeons</a></li>
 					
-					<?php if($this->user_model->isAdmin()):?>
-						<li><a href="<?php echo base_url();?>admin">Admin</a></li>
+					<?php if($this->safety_model->hasPermission(array('2', '3'))):?>
+						<li><a href="<?php echo base_url();?>admin">Controlpanel</a></li>
 					<?php endif;?>
 					
 					<?php if($this->safety_model->isLoggedIn()):?>
@@ -35,7 +35,6 @@
 					<p>Hosted by: <a href="http://kbkompaniet.org" target="_blank">KBK</a></p>
 					<p>Made by: <a href="http://wilsim.se" target="_blank">Williamsson</a></p>
 				</div>
-				
 				<div class="col-3">
 					<p>Play Minecraft on mc.kbkompaniet.org</p>
 					<p>Visit our <a href="http://mc.kbkompaniet.org:8123" target="_blank">Dynmap</a></p>

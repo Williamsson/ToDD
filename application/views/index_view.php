@@ -8,6 +8,9 @@
 
 <p>Login for admins:</p>
 <?php 
+	if($this->session->flashdata('message')){
+		echo $this->session->flashdata('message');
+	}
 	echo form_open('user/login');
 ?>
 	<input type="text" name="username" placeholder="Username"/><br/>

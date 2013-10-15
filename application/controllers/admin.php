@@ -3,7 +3,7 @@
 class Admin extends CI_Controller {
 	
 	public function index(){
-		if(!$this->safety_model->isLoggedIn() || !$this->user_model->isAdmin()){
+		if(!$this->safety_model->isLoggedIn() && $this->safety_model->hasPermission(array('2','3'))){
 			redirect('page');
 		}
 		

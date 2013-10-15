@@ -73,7 +73,7 @@ tinymce.init({
 <div class="col-2">
 	<p>Here you may select all the plugins that are used in this dungeon.</p>
 	<?php 
-		$plugins = $this->general_model->getPluginList();
+		$plugins = $this->plugin_model->getPluginList();
 		
 		foreach($plugins as $plugin){
 			if($plugin['checked']){ ?>

@@ -9,26 +9,35 @@
 		$('#table-3').dataTable();
 	} );
 </script>
-<a href="<?php echo base_url();?>plugins/add">Add a plugin</a><br/><br/>
+<?php if($this->user_model->isAdmin()){ echo "<a href='" . base_url() . "plugins/add'>Add a plugin</a><br/><br/>"; }?>
+<?php 
+	if($this->session->flashdata('message')){
+		echo $this->session->flashdata('message');
+	}
+?>
 <table id="table-3">
 	<thead>
 		<tr>
 			<th>Plugin name</th>
-			<th>Plugin description:</th>
+			<th>Version</th>
+			<th>Last updated</th>
+			<th>Description:</th>
 			<th>Currently active:</th>
-			<th>Broken:</th>
-			<th>Download link:</th>
-			<th>Link to "wiki":</th>
-			<th>Edit:</th>
-			<th>REMOVE:</th>
+			<th>Broken</th>
+			<th>Download link</th>
+			<th>Link to "wiki"</th>
+			<th>Edit</th>
+			<th>REMOVE</th>
 		</tr>
 	</thead>
 <?php 
-	$plugins = $this->general_model->getPluginList();
+	$plugins = $this->plugin_model->getPluginList();
 	
 	foreach($plugins as $plugin){
 		$id = $plugin['id'];
 		$name = $plugin['name'];
+		$version = $plugin['version'];
+		$lastUpdate = $plugin['update'];
 		$active = (int) $plugin['active'];
 		
 		if($active == 1){
@@ -54,6 +63,12 @@
 				<?php echo $name;?>
 			</td>
 			<td>
+				<?php echo $version;?>
+			</td>
+			<td>
+				<?php echo $lastUpdate;?>
+			</td>
+			<td>
 				<?php echo $desc;?>
 			</td>
 			<td>
@@ -73,10 +88,10 @@
 				?>
 			</td>
 			<td>
-				<a href="<?php echo base_url();?>plugins/edit/<?php echo $id;?>">Edit</a>
+				<?php if($this->user_model->isAdmin()){ echo "<a href='" . base_url() . "plugins/edit/$id'>Edit</a>"; }?>
 			</td>
 			<td>
-				<a href="<?php echo base_url();?>plugins/remove/<?php echo $id;?>">Remove</a>
+				<?php if($this->user_model->isAdmin()){ echo "<a href='" . base_url() . "plugins/remove/$id/$name'>Remove</a>"; }?>
 			</td>
 		</tr>
 

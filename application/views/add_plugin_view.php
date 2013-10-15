@@ -1,14 +1,17 @@
 <h1>Add plugin</h1>
 <div class="col-2">
 	<?php 
-		if($this->session->flashdata('pluginCreate')){
-			echo $this->session->flashdata('pluginCreate');
+		if($this->session->flashdata('message')){
+			echo $this->session->flashdata('message');
 		}
 		echo validation_errors('<div class="error">','</div>');
 		echo form_open('plugins/add');?>
 		
 		<label for="pluginName">Name of the plugin:*</label><br/>
 			<input name="pluginName" type="text" value="<?php echo set_value('pluginName'); ?>" placeholder="Plugin name"/><br/>
+
+		<label for="version">Version:</label><br/>
+			<input name="version" type="text" value="<?php echo set_value('version'); ?>" placeholder="Version"/><br/>
 		
 		<label for="downloadLink">Link to the download:*</label><br/>
 			<input name="downloadLink" type="text" value="<?php echo set_value('downloadLink'); ?>" placeholder="Download link"/><br/>
@@ -22,6 +25,10 @@
 ?>
 </div>
 <div class="col-2">
+	<label for="description">Last updated:</label><br/>
+		(If you can't see a datepicker, use good browser<br/> or enter like YYYY-MM-DD)<br/>
+		<input name="updated" type="date" value="<?php echo set_value('updated'); ?>"/><br/>
+		
 	<label for="description">Description:*</label><br/>
 		<input name="description" type="text" value="<?php echo set_value('description'); ?>" placeholder="Description"/><br/>
 	

@@ -41,7 +41,6 @@ class Dungeons extends CI_Controller {
 				
 				if ($_FILES['dungeonImage']['error'] != 4){
 					$this->load->helper('string');
-					
 					$fileName = random_string('alnum', 64);
 					
 					$config['upload_path'] = './uploads/';
@@ -61,6 +60,18 @@ class Dungeons extends CI_Controller {
 					}
 					
 					$dungeonImageFileName = $fileName . "." . pathinfo($_FILES['dungeonImage']['name'], PATHINFO_EXTENSION);
+					
+					$config1['image_library'] = 'gd2';
+					$config1['source_image']	= "./uploads/$dungeonImageFileName";
+					$config1['new_image'] = "./uploads/thumbs/$dungeonImageFileName";
+					$config1['create_thumb'] = TRUE;
+					$config1['thumb_marker'] = '';
+					$config1['maintain_ratio'] = TRUE;
+					$config1['width']	 = 160;
+					$config1['height']	= 140;
+					
+					$this->load->library('image_lib', $config1);
+					$this->image_lib->resize();
 				}
 				
 				

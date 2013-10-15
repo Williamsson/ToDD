@@ -47,9 +47,6 @@ class Dungeon_model extends CI_Model{
 	
 	function getAllDungeons(){
 		
-		$this->db->select('id,name,is_finished,description,hasBravery,minBravery,maxBravery');
-		$this->db->where('public', 1);
-		
 		$query = $this->db->get('temples');
 		
 		$return = array();
@@ -57,11 +54,19 @@ class Dungeon_model extends CI_Model{
 			$temp = array();
 			$temp['id'] = $row->id;
 			$temp['name'] = $row->name;
-			$temp['finished'] = $row->is_finished;
+			$temp['posX'] = $row->entrancePosX;
+			$temp['posY'] = $row->entrancePosY;
+			$temp['posZ'] = $row->entrancePosZ;
 			$temp['desc'] = $row->description;
+			$temp['other'] = $row->description;
+			$temp['finished'] = $row->is_finished;
+			$temp['public'] = $row->public;
 			$temp['hasBravery'] = $row->hasBravery;
 			$temp['minBravery'] = $row->minBravery;
 			$temp['maxBravery'] = $row->maxBravery;
+			$temp['rewardBravery'] = $row->rewardBravery;
+			$temp['costBravery'] = $row->costBravery;
+			$temp['image'] = $row->image;
 			$return[] = $temp;
 		}
 		

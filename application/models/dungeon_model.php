@@ -122,6 +122,18 @@ class Dungeon_model extends CI_Model{
 	}
 	
 	function removeDungeon($id){
+		
+		$this->db->select('image');
+		$this->db->where('id',$id);
+		$query = $this->db->get('temples');
+		
+		foreach($query->result() as $row){
+			$oldImage = $row->image;
+		}
+	
+		unlink("./uploads/$oldImage");
+		unlink("./uploads/thumbs/$oldImage");
+		
 		$this->db->where('id',$id);
 		$this->db->delete('temples');
 	

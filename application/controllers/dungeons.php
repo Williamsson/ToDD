@@ -108,7 +108,7 @@ class Dungeons extends CI_Controller {
 				$plugins = $this->input->post('plugins');
 				$responsible = $this->session->userdata('userId');
 				
-				$result = $this->dungeon_model->editDungeon($name, $entrancePosX, $entrancePosY, $entrancePosZ, $desc, $other, $plugins, 
+				$result = $this->dungeon_model->addDungeon($name, $entrancePosX, $entrancePosY, $entrancePosZ, $desc, $other, $plugins, 
 											$finished, $public, $responsible, $hasBravery, $maxBravery, $minBravery, $rewardBravery, $costBravery, $dungeonImageFileName);
 				
 				if($result){
@@ -116,7 +116,7 @@ class Dungeons extends CI_Controller {
 				}else{
 					$this->session->set_flashdata('message', "<div class='error'>The creation of the dungeon '$name' failed for some reason.</div>");
 				}
-				redirect('/dungeons/add');
+				redirect('/dungeons');
 			}
 		}
 		$data = array(

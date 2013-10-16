@@ -93,7 +93,7 @@ class Dungeon_model extends CI_Model{
 		
 		$this->db->select('temples.name, temples.responsible, temples.entrancePosX, temples.entrancePosY, temples.entrancePosZ, temples.description,
 						temples.other, temples.is_finished, temples.public, temples.hasBravery, temples.minBravery, temples.maxBravery, temples.rewardBravery,
-						temples.costBravery,temples.image,users.username,plugins.plugin_name');
+						temples.costBravery,temples.image,temples.onlyAdmin,users.username,plugins.plugin_name');
 		$this->db->from('temples');
 		$this->db->where('temples.id',$id);
 		$this->db->join('temple_plugins','temple_plugins.temple_id = temples.id','left');
@@ -121,6 +121,7 @@ class Dungeon_model extends CI_Model{
 			$res['rewardBravery'] = $row->rewardBravery;
 			$res['costBravery'] = $row->costBravery;
 			$res['image'] = $row->image;
+			$res['onlyAdmin']= $row->onlyAdmin;
 			$res['plugins'][] = $row->plugin_name;
 			
 		}
@@ -153,11 +154,15 @@ class Dungeon_model extends CI_Model{
 		return true;
 	}
 	
-	function getAllDungeons($onlyPublic){
-		$this->db->select('id, name,description,is_finished,image,hasBravery');
+	function getAllDungeons($onlyPublic, $isAdmin){
+		$this->db->select('id, name,description,is_finished,image,hasBravery,onlyAdmin');
 		
 		if($onlyPublic){
 			$this->db->where('public',1);
+		}
+		
+		if(!$isAdmin){
+			$this->db->where('onlyAdmin',0);
 		}
 		
 		$query = $this->db->get('temples');
@@ -171,6 +176,7 @@ class Dungeon_model extends CI_Model{
 			$temp['finished'] = $row->is_finished;
 			$temp['hasBravery'] = $row->hasBravery;
 			$temp['image'] = $row->image;
+			$temp['onlyAdmin'] = $row->onlyAdmin;
 			
 			$return[] = $temp;
 		}

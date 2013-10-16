@@ -29,9 +29,12 @@
 	if($this->safety_model->hasPermission(array('2','3'))){
 		$onlyPublic = false;
 	}
-	$dungeons = $this->dungeon_model->getAllDungeons($onlyPublic);
+	$isAdmin = $this->user_model->isAdmin();
 	
-	foreach($dungeons as $dungeon){?>
+	$dungeons = $this->dungeon_model->getAllDungeons($onlyPublic, $isAdmin);
+	
+	foreach($dungeons as $dungeon){
+	?>
 		<tr>
 			<td>
 				<?php 
@@ -70,8 +73,7 @@
 			</td>
 		</tr>
 		
-<?php 		
+<?php
 	}
-	
 ?>
 </table>

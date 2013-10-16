@@ -96,6 +96,8 @@ class User_model extends CI_Model{
 	}
 	
 	function isAdmin(){
+		
+		
 		if($this->session->userdata('permission') == 2){
 			return true;
 		}else{
@@ -110,5 +112,6 @@ class User_model extends CI_Model{
 			return false;
 		}
 	}
+	
 	
 }

@@ -3,6 +3,7 @@ class Safety_model extends CI_Model{
 	
 	function isLoggedIn(){
 		$userId = $this->session->userdata('userId');
+		
 		if($userId){
 			return true;
 		}else{

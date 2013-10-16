@@ -153,9 +153,13 @@ class Dungeon_model extends CI_Model{
 		return true;
 	}
 	
-	function getAllDungeons(){
+	function getAllDungeons($onlyPublic){
 		$this->db->select('id, name,description,is_finished,image,hasBravery');
-		$this->db->where('public',1);
+		
+		if($onlyPublic){
+			$this->db->where('public',1);
+		}
+		
 		$query = $this->db->get('temples');
 		
 		$return = array();

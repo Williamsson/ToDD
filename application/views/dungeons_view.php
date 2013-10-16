@@ -24,8 +24,12 @@
 				<th>Using bravery</th>
 			</tr>
 		</thead>		
-<?php 	
-	$dungeons = $this->dungeon_model->getAllDungeons();
+<?php 
+	$onlyPublic = true;
+	if($this->safety_model->hasPermission(array('2','3'))){
+		$onlyPublic = false;
+	}
+	$dungeons = $this->dungeon_model->getAllDungeons($onlyPublic);
 	
 	foreach($dungeons as $dungeon){?>
 		<tr>

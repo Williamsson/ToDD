@@ -21,7 +21,7 @@ class User extends CI_Controller {
 		redirect('page');
 	}
 	
-	function register(){
+	function add(){
 		if($this->input->post()){
 			$this->form_validation->set_rules('username','Username','alpha|required|xss_clean');
 			$this->form_validation->set_rules('password','Password','required|min_length[6]|xss_clean');
@@ -40,7 +40,7 @@ class User extends CI_Controller {
 				}else{
 					$this->session->set_flashdata('message', "<div class='error'>Sadly, something went wrong.</div>");
 				}
-				redirect('user/register');
+				redirect('user/add');
 				
 			}
 		}
@@ -50,6 +50,36 @@ class User extends CI_Controller {
 				'mainContent' => "register_view.php",
 				'description' => "Register to the site",
 				'keyword' => "nycklar",
+		);
+		$this->load->view('template.php', $data);
+	}
+	
+	function delete($id){
+		if(!$this->safety_model->isLoggedIn() || !$this->user_model->isAdmin()){
+			redirect('page');
+		}
+		
+		if($this->input->post()){
+			$this->form_validation->set_rules('id','The ID','required|integer|xss_clean');
+				
+			if ($this->form_validation->run() == TRUE){
+				$id = $this->input->post('id');
+		
+				$result = $this->user_model->deleteUser($id);
+		
+				if($result){
+					$this->session->set_flashdata('message', "<div class='success'>User was successfully removed!</div>");
+				}else{
+					$this->session->set_flashdata('message', "<div class='error'>Removing the user failed for some reason. I blame Molgan.</div>");
+				}
+				redirect('/admin/manageUsers');
+			}
+		}
+		$data = array(
+				'title' 		=> "KBK - Remove user",
+				'mainContent' 	=> "remove_user_view.php",
+				'description' 	=> "Remove a user from the system",
+				'keyword' 		=> "",
 		);
 		$this->load->view('template.php', $data);
 	}

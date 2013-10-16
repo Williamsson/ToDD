@@ -61,6 +61,16 @@ class User_model extends CI_Model{
 		return true;
 	}
 	
+	function deleteUSer($id){
+		$this->db->where('id',$id);
+		$this->db->delete('users');
+		
+		$this->db->where('user_id',$id);
+		$this->db->delete('users_permissions');
+		
+		return true;
+	}
+	
 	function getUserList(){
 		
 		$this->db->select('users.id,users.username,users.description,users_permissions.permission_id');

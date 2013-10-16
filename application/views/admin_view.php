@@ -1,5 +1,5 @@
 <?php 
-	require_once("admin_views/lefthandMenu.php");
+	require_once("lefthandMenu.php");
 ?>
 
 <div id="adminContent">

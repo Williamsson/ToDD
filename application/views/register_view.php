@@ -18,7 +18,7 @@ tinymce.init({
 			echo $this->session->flashdata('message');
 		}
 		echo validation_errors('<div class="error">','</div>');
-		echo form_open('user/register');?>
+		echo form_open('user/add');?>
 		
 		<label for="username">Username:*</label><br/>
 			<input type="text" value="<?php echo set_value('username');?>" name="username"/><br/>

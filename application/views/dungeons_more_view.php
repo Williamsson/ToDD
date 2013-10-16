@@ -12,6 +12,7 @@
 		<h2><?php echo $dungeon['name']?></h2>
 		<p>Location: <?php echo $dungeon['entrancePosX'] . " " . $dungeon['entrancePosY'] . " " . $dungeon['entrancePosZ'];?></p>
 		<p>Finished: <?php if($dungeon['finished'] == 1){echo "Yes";}else{echo"No";};?></p>
+		<p>Responsible: <?php echo "<a href='" . base_url() ."user/profile/" . $dungeon['responsibleId'] ."'>" . $dungeon['responsible'] . "</a>";?></p>
 		<p>Public: <?php if($dungeon['public'] == 1){echo "Yes";}else{echo"No";};?></p>
 		<p>Using bravery: <?php if($dungeon['hasBravery'] == 1){echo "Yes";}else{echo"No";};?></p>
 		<p>Min bravery: <?php echo $dungeon['minBravery'];?></p>

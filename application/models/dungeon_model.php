@@ -17,6 +17,7 @@ class Dungeon_model extends CI_Model{
 			'minBravery'	=> $minBravery,
 			'rewardBravery'	=> $rewardBravery,
 			'costBravery'	=> $costBravery,
+			'responsible'	=> $responsible,
 			'image'			=> $dungeonImageFileName,
 		);
 		
@@ -90,11 +91,14 @@ class Dungeon_model extends CI_Model{
 	
 	function getDungeon($id){
 		
-		$this->db->select('*');
+		$this->db->select('temples.name, temples.responsible, temples.entrancePosX, temples.entrancePosY, temples.entrancePosZ, temples.description,
+						temples.other, temples.is_finished, temples.public, temples.hasBravery, temples.minBravery, temples.maxBravery, temples.rewardBravery,
+						temples.costBravery,temples.image,users.username,plugins.plugin_name');
 		$this->db->from('temples');
 		$this->db->where('temples.id',$id);
 		$this->db->join('temple_plugins','temple_plugins.temple_id = temples.id','left');
 		$this->db->join('plugins','plugins.id = temple_plugins.plugin_id','left');
+		$this->db->join('users','users.id = temples.responsible','left');
 		
 		$query = $this->db->get();
 		$res = array();
@@ -102,6 +106,8 @@ class Dungeon_model extends CI_Model{
 		foreach($query->result() as $row){
 			$res['id'] = $id;
 			$res['name'] = $row->name;
+			$res['responsibleId'] = $row->responsible;
+			$res['responsible'] = $row->username;
 			$res['entrancePosX'] = $row->entrancePosX;
 			$res['entrancePosY'] = $row->entrancePosY;
 			$res['entrancePosZ'] = $row->entrancePosZ;
@@ -116,6 +122,7 @@ class Dungeon_model extends CI_Model{
 			$res['costBravery'] = $row->costBravery;
 			$res['image'] = $row->image;
 			$res['plugins'][] = $row->plugin_name;
+			
 		}
 		
 		return $res;

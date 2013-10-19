@@ -2,7 +2,7 @@
 class Dungeon_model extends CI_Model{
 	
 	function addDungeon($name, $entrancePosX, $entrancePosY, $entrancePosZ, $desc, $other, $plugins, 
-						$finished, $public, $responsible, $hasBravery, $maxBravery, $minBravery, $rewardBravery, $costBravery, $dungeonImageFileName){
+						$finished, $visibility, $responsible, $hasBravery, $maxBravery, $minBravery, $rewardBravery, $costBravery, $dungeonImageFileName){
 		$data = array(
 			'name'			=> $name,
 			'entrancePosX'	=> $entrancePosX,
@@ -11,7 +11,7 @@ class Dungeon_model extends CI_Model{
 			'description'	=> $desc,
 			'other'			=> $other,
 			'is_finished'	=> $finished,
-			'public'		=> $public,
+			'visibility'	=> $visibility,
 			'hasBravery'	=> $hasBravery,
 			'maxBravery'	=> $maxBravery,
 			'minBravery'	=> $minBravery,
@@ -47,7 +47,7 @@ class Dungeon_model extends CI_Model{
 	}
 	
 	function updateDungeon($id, $name, $entrancePosX, $entrancePosY, $entrancePosZ, $desc, $other, $plugins, 
-						$finished, $public, $hasBravery, $maxBravery, $minBravery, $rewardBravery, $costBravery, $dungeonImageFileName){
+						$finished, $visibility, $hasBravery, $maxBravery, $minBravery, $rewardBravery, $costBravery, $dungeonImageFileName){
 		
 		$data = array(
 			'name'			=> $name,
@@ -57,7 +57,7 @@ class Dungeon_model extends CI_Model{
 			'description'	=> $desc,
 			'other'			=> $other,
 			'is_finished'	=> $finished,
-			'public'		=> $public,
+			'visibility'	=> $visibility,
 			'hasBravery'	=> $hasBravery,
 			'maxBravery'	=> $maxBravery,
 			'minBravery'	=> $minBravery,
@@ -92,8 +92,8 @@ class Dungeon_model extends CI_Model{
 	function getDungeon($id){
 		
 		$this->db->select('temples.name, temples.responsible, temples.entrancePosX, temples.entrancePosY, temples.entrancePosZ, temples.description,
-						temples.other, temples.is_finished, temples.public, temples.hasBravery, temples.minBravery, temples.maxBravery, temples.rewardBravery,
-						temples.costBravery,temples.image,temples.onlyAdmin,users.username,plugins.plugin_name');
+						temples.other, temples.is_finished, temples.visibility, temples.hasBravery, temples.minBravery, temples.maxBravery, temples.rewardBravery,
+						temples.costBravery,temples.visibility,temples.image,users.username,plugins.plugin_name');
 		$this->db->from('temples');
 		$this->db->where('temples.id',$id);
 		$this->db->join('temple_plugins','temple_plugins.temple_id = temples.id','left');
@@ -114,14 +114,13 @@ class Dungeon_model extends CI_Model{
 			$res['description'] = $row->description;
 			$res['other'] = $row->other;
 			$res['finished'] = $row->is_finished;
-			$res['public'] = $row->public;
+			$res['visibility'] = $row->visibility;
 			$res['hasBravery'] = $row->hasBravery;
 			$res['minBravery'] = $row->minBravery;
 			$res['maxBravery'] = $row->maxBravery;
 			$res['rewardBravery'] = $row->rewardBravery;
 			$res['costBravery'] = $row->costBravery;
 			$res['image'] = $row->image;
-			$res['onlyAdmin']= $row->onlyAdmin;
 			$res['plugins'][] = $row->plugin_name;
 			
 		}
@@ -154,19 +153,20 @@ class Dungeon_model extends CI_Model{
 		return true;
 	}
 	
-	function getAllDungeons($onlyPublic, $isAdmin){
-		$this->db->select('id, name,description,is_finished,image,hasBravery,onlyAdmin');
+	function getAllDungeons($showNotPublicDungeons, $showOnlyAdminDungeons){
+		$this->db->select('id, name,description,is_finished,image,hasBravery');
 		
-		if($onlyPublic){
-			$this->db->where('public',1);
+		
+		if($showOnlyAdminDungeons){
+			$this->db->where('visibility <=',3);
+		}elseif($showNotPublicDungeons){
+			$this->db->where('visibility <=', 2);
+		}else{
+			$this->db->where('visibility',1);
 		}
 		
-		if(!$isAdmin){
-			$this->db->where('onlyAdmin',0);
-		}
 		
 		$query = $this->db->get('temples');
-		
 		$return = array();
 		foreach ($query->result() as $row){
 			$temp = array();
@@ -176,7 +176,6 @@ class Dungeon_model extends CI_Model{
 			$temp['finished'] = $row->is_finished;
 			$temp['hasBravery'] = $row->hasBravery;
 			$temp['image'] = $row->image;
-			$temp['onlyAdmin'] = $row->onlyAdmin;
 			
 			$return[] = $temp;
 		}

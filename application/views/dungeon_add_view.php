@@ -54,10 +54,12 @@ tinymce.init({
 				<option value="0">No</option>
 			</select><br/>
 			
-		<label for="public">Should this be viewable public?:*</label><br/>
-			<select name="public">
-				<option value="1">Yes</option>
-				<option value="0">No</option>
+		<label for="visibility">Visibility level:*</label><br/>
+			<p>If you choose public, all can see. If you choose builders, builders and admins can see. If you choose admins, only admins.</p>
+			<select name="visibility">
+				<option value="1">Public</option>
+				<option value="2">Builders</option>
+				<option value="3">Admins</option>
 			</select><br/>
 			
 		<label for="description">Give a description of the dungeon, it will be public:*</label><br/>

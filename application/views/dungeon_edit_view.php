@@ -86,20 +86,28 @@ tinymce.init({
 				?>
 			</select><br/>
 			
-		<label for="public">Should this be viewable public?:*</label><br/>
-			<select name="public">
+		<label for="visibility">What groups should see this?:*</label><br/>
+			<p>If you choose public, all can see. If you choose builders, builders and admins can see. If you choose admins, only admins.</p>
+			<select name="visibility">
 				<?php 
-					if($dungeon['public'] == 0){?>
-						<option selected value="0">No</option>
+					if($dungeon['visibility'] == 1){?>
+						<option selected value="0">Public</option>
 <?php 				}else{?>
-						<option value="0">No</option>
+						<option value="0">Public</option>
 <?php 				}
 				?>
 				<?php 
-					if($dungeon['public'] == 1){?>
-						<option selected value="1">Yes</option>
+					if($dungeon['visibility'] == 2){?>
+						<option selected value="1">Builders</option>
 <?php 				}else{?>
-						<option value="1">Yes</option>
+						<option value="1">Builders</option>
+<?php 				}
+				?>
+				<?php 
+					if($dungeon['visibility'] == 3){?>
+						<option selected value="1">Admins</option>
+<?php 				}else{?>
+						<option value="1">Admins</option>
 <?php 				}
 				?>
 			</select><br/>

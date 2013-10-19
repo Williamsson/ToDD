@@ -45,7 +45,7 @@ class Dungeons extends CI_Controller {
 			
 			$this->form_validation->set_rules('dungeonName','Name','required|xss_clean');
 			$this->form_validation->set_rules('finished','Finished','required|integer|xss_clean');
-			$this->form_validation->set_rules('public','Finished','required|integer|xss_clean');
+			$this->form_validation->set_rules('visibility','Visibility','required|integer|xss_clean');
 			$this->form_validation->set_rules('description','Description','required|xss_clean');
 			$this->form_validation->set_rules('other','Other','xss_clean');
 			
@@ -93,7 +93,7 @@ class Dungeons extends CI_Controller {
 				$desc = $this->input->post('description');
 				$other = $this->input->post('other');
 				$finished = $this->input->post('finished');
-				$public = $this->input->post('public');
+				$visibility = $this->input->post('visibility');
 				
 				$entrancePosX = $this->input->post('entrancePosX');
 				$entrancePosY = $this->input->post('entrancePosY');
@@ -109,7 +109,7 @@ class Dungeons extends CI_Controller {
 				$responsible = $this->session->userdata('userId');
 				
 				$result = $this->dungeon_model->addDungeon($name, $entrancePosX, $entrancePosY, $entrancePosZ, $desc, $other, $plugins, 
-											$finished, $public, $responsible, $hasBravery, $maxBravery, $minBravery, $rewardBravery, $costBravery, $dungeonImageFileName);
+											$finished, $visibility, $responsible, $hasBravery, $maxBravery, $minBravery, $rewardBravery, $costBravery, $dungeonImageFileName);
 				
 				if($result){
 					$this->session->set_flashdata('message', "<div class='success'>Dungeon $name was created successfully!</div>");
@@ -149,7 +149,7 @@ class Dungeons extends CI_Controller {
 			$this->form_validation->set_rules('dungeonName','Name','required|xss_clean');
 			$this->form_validation->set_rules('id','ID','integer|required|xss_clean');
 			$this->form_validation->set_rules('finished','Finished','required|integer|xss_clean');
-			$this->form_validation->set_rules('public','Finished','required|integer|xss_clean');
+			$this->form_validation->set_rules('visibility','Finished','required|integer|xss_clean');
 			$this->form_validation->set_rules('description','Description','required|xss_clean');
 			$this->form_validation->set_rules('other','Other','xss_clean');
 			
@@ -211,7 +211,7 @@ class Dungeons extends CI_Controller {
 				$desc = $this->input->post('description');
 				$other = $this->input->post('other');
 				$finished = $this->input->post('finished');
-				$public = $this->input->post('public');
+				$visibility = $this->input->post('visibility');
 		
 				$entrancePosX = $this->input->post('entrancePosX');
 				$entrancePosY = $this->input->post('entrancePosY');
@@ -226,7 +226,7 @@ class Dungeons extends CI_Controller {
 				$plugins = $this->input->post('plugins');
 				
 				$result = $this->dungeon_model->updateDungeon($id, $name, $entrancePosX, $entrancePosY, $entrancePosZ, $desc, $other, $plugins,
-						$finished, $public, $hasBravery, $maxBravery, $minBravery, $rewardBravery, $costBravery, $dungeonImageFileName);
+						$finished, $visibility, $hasBravery, $maxBravery, $minBravery, $rewardBravery, $costBravery, $dungeonImageFileName);
 		
 				if($result){
 					$this->session->set_flashdata('message', "<div class='success'>Dungeon $name was successfully edited!</div>");

@@ -25,13 +25,14 @@
 			</tr>
 		</thead>		
 <?php 
-	$onlyPublic = true;
+	$showOnlyPublicDungeons = FALSE;
 	if($this->safety_model->hasPermission(array('2','3'))){
-		$onlyPublic = false;
+		$showOnlyPublicDungeons = TRUE;
 	}
-	$isAdmin = $this->user_model->isAdmin();
 	
-	$dungeons = $this->dungeon_model->getAllDungeons($onlyPublic, $isAdmin);
+	$showOnlyAdminDungeons = $this->user_model->isAdmin();
+	
+	$dungeons = $this->dungeon_model->getAllDungeons($showOnlyPublicDungeons, $showOnlyAdminDungeons);
 	
 	foreach($dungeons as $dungeon){
 	?>

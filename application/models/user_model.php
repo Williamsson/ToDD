@@ -96,9 +96,7 @@ class User_model extends CI_Model{
 	}
 	
 	function isAdmin(){
-		
-		
-		if($this->session->userdata('permission') == 2){
+		if($this->session->userdata('permission') == 3){
 			return true;
 		}else{
 			return false;
@@ -106,7 +104,7 @@ class User_model extends CI_Model{
 	}
 	
 	function isBuilder(){
-		if($this->session->userdata('permission') == 3){
+		if($this->session->userdata('permission') == 2){
 			return true;
 		}else{
 			return false;

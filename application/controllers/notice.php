@@ -8,7 +8,23 @@ class Admin extends CI_Controller {
 		}
 	}		
 	
+	public function add(){
+		if(!$this->safety_model->isLoggedIn() || !$this->user_model->isAdmin()){
+			redirect('page');
+		}
+	}
 	
 	
+	public function edit(){
+		if(!$this->safety_model->isLoggedIn() || !$this->user_model->isAdmin()){
+			redirect('page');
+		}
+	}
+	
+	public function delete(){
+		if(!$this->safety_model->isLoggedIn() || !$this->user_model->isAdmin()){
+			redirect('page');
+		}
+	}
 
 }

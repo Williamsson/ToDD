@@ -1,7 +1,7 @@
 <?php 
-	require_once("lefthandMenu.php");
+	require_once("admin_left_menu.php");
 ?>
 
 <div id="adminContent">
-	<p>Lorem ipsum and shits</p>
+	
 </div>

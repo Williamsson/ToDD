@@ -47,9 +47,9 @@ class User extends CI_Controller {
 		
 		$data = array(
 				'title' => "ToD - Register",
-				'mainContent' => "register_view.php",
+				'mainContent' => "user_add_view.php",
 				'description' => "Register to the site",
-				'keyword' => "nycklar",
+				'keyword' => "",
 		);
 		$this->load->view('template.php', $data);
 	}
@@ -77,7 +77,7 @@ class User extends CI_Controller {
 		}
 		$data = array(
 				'title' 		=> "KBK - Remove user",
-				'mainContent' 	=> "remove_user_view.php",
+				'mainContent' 	=> "user_delete_view.php",
 				'description' 	=> "Remove a user from the system",
 				'keyword' 		=> "",
 		);

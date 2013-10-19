@@ -46,7 +46,7 @@
 					?>
 				</td>
 				<td>
-					<a href="<?php echo base_url() . 'user/delete/' . $user['id'] . '/' . $user['username'];?>">Remove</a>
+					<a class='removeImage' href="<?php echo base_url() . 'user/delete/' . $user['id'] . '/' . $user['username'];?>">Remove</a>
 				</td>
 			</tr>
 <?php 	}

@@ -23,7 +23,7 @@ class Admin extends CI_Controller {
 		
 		$data = array(
 				'title' => "",
-				'mainContent' => "manage_users_view.php",
+				'mainContent' => "users_manage_view.php",
 				'description' => "Manage users",
 				'keyword' => "",
 		);

@@ -5,7 +5,7 @@ class Dungeons extends CI_Controller {
 	public function index(){
 		$data = array(
 				'title' => "ToD - Dungeons",
-				'mainContent' => "dungeons_view.php",
+				'mainContent' => "dungeon_view.php",
 				'description' => "List of all the dungeons",
 		);
 		$this->load->view('template.php', $data);
@@ -18,7 +18,7 @@ class Dungeons extends CI_Controller {
 		
 		$data = array(
 				'title' => "ToD - Dungeons: More",
-				'mainContent' => "dungeons_more_view.php",
+				'mainContent' => "dungeon_more_view.php",
 				'description' => "Shows more information of a dungeon",
 		);
 		$this->load->view('template.php', $data);
@@ -121,7 +121,7 @@ class Dungeons extends CI_Controller {
 		}
 		$data = array(
 				'title' => "ToD - Add dungeon",
-				'mainContent' => "add_dungeon_view.php",
+				'mainContent' => "dungeon_add_view.php",
 				'description' => "Add dungeon",
 		);
 		$this->load->view('template.php', $data);
@@ -238,7 +238,7 @@ class Dungeons extends CI_Controller {
 		}
 		$data = array(
 				'title' => "ToD - Edit dungeon",
-				'mainContent' => "edit_dungeon_view.php",
+				'mainContent' => "dungeon_edit_view.php",
 				'description' => "Edit a dungeon",
 		);
 		$this->load->view('template.php', $data);
@@ -270,9 +270,9 @@ class Dungeons extends CI_Controller {
 		
 		$data = array(
 				'title' 		=> "KBK - Remove dungeon",
-				'mainContent' 	=> "remove_dungeon_view.php",
+				'mainContent' 	=> "dungeon_delete_view.php",
 				'description' 	=> "Remove the dungeon",
-				'keyword' 		=> "nycklar",
+				'keyword' 		=> "",
 		);
 		$this->load->view('template.php', $data);
 	}

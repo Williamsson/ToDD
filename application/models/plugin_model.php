@@ -77,7 +77,7 @@ class Plugin_model extends CI_Model{
 			$result['update'] = $row->last_update;
 			$result['dl_link'] = $row->link_download;
 			$result['link'] = $row->link_plugin;
-			$result['desc'] = $row->description;
+			$result['desc'] = $row->plugin_description;
 			$result['active'] = $row->active;
 			$result['broken'] = $row->broken;
 		}

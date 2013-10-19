@@ -19,8 +19,8 @@
 		<p>Max bravery: <?php echo $dungeon['maxBravery'];?></p>
 		<p>Cost bravery: <?php echo $dungeon['costBravery'];?></p>
 		<p>Reward bravery: <?php echo $dungeon['rewardBravery'];?></p>
-		<a href="<?php echo base_url() . "dungeons/edit/" . $this->uri->segment(3);?>">Edit dungeon</a><br/><br/>
-		<a href="<?php echo base_url() . "dungeons/delete/" . $this->uri->segment(3) . "/" . $dungeon['name'];?>">Remove dungeon</a><br/><br/>
+		<a class='editImage' href="<?php echo base_url() . "dungeons/edit/" . $this->uri->segment(3);?> ">Edit dungeon</a><br/><br/>
+		<a class='removeImage' href="<?php echo base_url() . "dungeons/delete/" . $this->uri->segment(3) . "/" . $dungeon['name'];?>">Remove dungeon</a><br/><br/>
 		<a href="<?php echo base_url();?>dungeons">Back</a>
 	</div>
 	

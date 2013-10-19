@@ -59,15 +59,15 @@ class Plugins extends CI_Controller {
 		}
 		$data = array(
 				'title' => "KBK - Plugin management",
-				'mainContent' => "add_plugin_view.php",
-				'description' => "En sida",
-				'keyword' => "nycklar",
+				'mainContent' => "plugin_add_view.php",
+				'description' => "",
+				'keyword' => "",
 		);
 		$this->load->view('template.php', $data);
 		
 	}
 	
-	function remove(){
+	function delete(){
 		if(!$this->safety_model->isLoggedIn() || !$this->user_model->isAdmin()){
 			redirect('page');
 		}
@@ -93,8 +93,8 @@ class Plugins extends CI_Controller {
 		}
 		
 		$data = array(
-				'title' 		=> "KBK - Remove plugin",
-				'mainContent' 	=> "remove_plugin_view.php",
+				'title' 		=> "KBK - Delete plugin",
+				'mainContent' 	=> "plugin_delete_view.php",
 				'description' 	=> "En sida",
 				'keyword' 		=> "nycklar",
 		);
@@ -144,7 +144,7 @@ class Plugins extends CI_Controller {
 		
 		$data = array(
 				'title' 		=> "KBK - Edit plugin",
-				'mainContent' 	=> "edit_plugin_view.php",
+				'mainContent' 	=> "plugin_edit_view.php",
 				'description' 	=> "En sida",
 				'keyword' 		=> "nycklar",
 		);

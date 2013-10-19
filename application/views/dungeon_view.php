@@ -11,7 +11,7 @@
 </script>
 <?php 
 	if($this->user_model->isAdmin()){ 
-		echo "<a href='" . base_url() . "dungeons/add'>Add a dungeon</a><br/><br/>"; 
+		echo "<a href='" . base_url() . "dungeons/add' class='editImage'>Add a dungeon</a><br/><br/>"; 
 	}?>
 	
 	<table id="table-3">

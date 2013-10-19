@@ -9,7 +9,7 @@
 		$('#table-3').dataTable();
 	} );
 </script>
-<?php if($this->user_model->isAdmin()){ echo "<a href='" . base_url() . "plugins/add'>Add a plugin</a><br/><br/>"; }?>
+<?php if($this->user_model->isAdmin()){ echo "<a class='editImage' href='" . base_url() . "plugins/add'>Add a plugin</a><br/><br/>"; }?>
 <?php 
 	if($this->session->flashdata('message')){
 		echo $this->session->flashdata('message');
@@ -88,10 +88,10 @@
 				?>
 			</td>
 			<td>
-				<?php if($this->user_model->isAdmin()){ echo "<a href='" . base_url() . "plugins/edit/$id'>Edit</a>"; }?>
+				<?php if($this->user_model->isAdmin()){ echo "<a class='editImage' href='" . base_url() . "plugins/edit/$id'>Edit</a>"; }?>
 			</td>
 			<td>
-				<?php if($this->user_model->isAdmin()){ echo "<a href='" . base_url() . "plugins/remove/$id/$name'>Remove</a>"; }?>
+				<?php if($this->user_model->isAdmin()){ echo "<a class='removeImage' href='" . base_url() . "plugins/delete/$id/$name'>Remove</a>"; }?>
 			</td>
 		</tr>
 

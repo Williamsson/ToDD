@@ -4,6 +4,18 @@ html,body{
    ) repeat;
 }
 
+.editImage{
+	background:url('../img/edit-blue.gif');
+	background-repeat: no-repeat;
+	padding-left: 20px;
+}
+
+.removeImage{
+	background:url('../img/redx.png');
+	background-repeat: no-repeat;
+	padding-left: 20px;
+}
+
 #wrapper{
 	width: 1024px;
 	margin: 0 auto;

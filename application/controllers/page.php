@@ -21,8 +21,8 @@ class Page extends CI_Controller {
 		$data = array(
 					'title' => "KBK - Page",
 					'mainContent' => "index_view.php",
-					'description' => "En sida",
-					'keyword' => "nycklar",
+					'description' => "",
+					'keyword' => "",
 					);
 		$this->load->view('template.php', $data);
 	}

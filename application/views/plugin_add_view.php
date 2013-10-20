@@ -1,3 +1,11 @@
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<script>
+  $(function() {
+    $("#datepicker").datepicker({ dateFormat: "yy-mm-dd" });
+  });
+</script>
 <h1>Add plugin</h1>
 <div class="col-2">
 	<?php 
@@ -25,9 +33,8 @@
 ?>
 </div>
 <div class="col-2">
-	<label for="description">Last updated:</label><br/>
-		(If you can't see a datepicker, use good browser<br/> or enter like YYYY-MM-DD)<br/>
-		<input name="updated" type="date" value="<?php echo set_value('updated'); ?>"/><br/>
+	<label for="updated">Last updated:</label><br/>
+		<input id="datepicker" name="updated" type="text" value="<?php echo set_value('updated'); ?>"/><br/>
 		
 	<label for="description">Description:*</label><br/>
 		<input name="description" type="text" value="<?php echo set_value('description'); ?>" placeholder="Description"/><br/>

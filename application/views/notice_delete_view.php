@@ -3,8 +3,8 @@
 	$title = urldecode($this->uri->segment(4));
 ?>
 
-<h1>Remove plugin: <?php echo $title;?></h1>
-<p>Are you completely sure you want to remove this plugin from the system? Can't be undone.</p>
+<h1>Remove Notice: <?php echo $title;?></h1>
+<p>Are you completely sure you want to remove this notice from the system? Can't be undone.</p>
 
 <?php 
 	echo validation_errors('<div class="error">','</div>');

@@ -19,6 +19,6 @@
 	if($this->user_model->isAdmin()){
 		echo "<a href='" . base_url() ."admin/'>Back</a><br/>";
 		echo "<a class='editImage' href='" . base_url() ."notice/edit/" . $id ."/'>Edit</a><br/>";
-		echo "<a class='removeImage' href='" . base_url() ."notice/delete/" . $id . "/" . $notice['title'] ."'>Remove</a>";
+		echo "<a class='removeImage' href='" . base_url() ."notice/delete/" . $id  ."/" . rawurlencode($notice['title']) ."'>Remove</a>";
 	}
 ?>

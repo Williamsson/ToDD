@@ -16,6 +16,13 @@ html,body{
 	padding-left: 20px;
 }
 
+.noticeMessage{
+	width: 100%;
+	padding: 10px;
+	background: #E2E4FF;
+	margin-bottom: 5px;
+}
+
 #wrapper{
 	width: 1024px;
 	margin: 0 auto;
@@ -77,7 +84,7 @@ html,body{
 				}
 	#adminContent{
 		float: right;
-		width: 70%;
+		width: 75%;
 	}
 #footer{
 	width:100%;

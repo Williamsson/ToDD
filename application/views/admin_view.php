@@ -21,6 +21,13 @@ $(document).ready( function() {
 			echo $this->session->flashdata('message');
 		}
 	?>
+	
+	<?php 
+		if($this->dungeon_model->checkUnapprovedDungeons()){
+			echo '<div class="noticeMessage"><a href="' . base_url() .'dungeons/approve">There are unapproved dungeons that await approval!</a></div>';
+		}
+	?>
+	
 	<h1>Noticeboard</h1>
 	<a class='editImage' href="<?php echo base_url()?>notice/add">Create newspost</a>
 	<table id="noticeBoard">

@@ -9,21 +9,17 @@
 		$('#table-3').dataTable();
 	} );
 </script>
-<?php 
-	if($this->user_model->isAdmin()){ 
-		echo "<a href='" . base_url() . "dungeons/add' class='editImage'>Add a dungeon</a><br/><br/>"; 
-	}?>
-	
-	<table id="table-3">
-		<thead>
-			<tr>
-				<th>Dungeon name</th>
-				<th>Description</th>
-				<th>Image</th>
-				<th>Finished</th>
-				<th>Using bravery</th>
-			</tr>
-		</thead>		
+<table id="table-3">
+	<thead>
+		<tr>
+			<th>Dungeon name</th>
+			<th>Description</th>
+			<th>Image</th>
+			<th>Finished</th>
+			<th>Approve</th>
+			<th>Delete</th>
+		</tr>
+	</thead>		
 <?php 
 	$showOnlyPublicDungeons = FALSE;
 	if($this->safety_model->hasPermission(array('2','3'))){
@@ -32,7 +28,7 @@
 	
 	$showOnlyAdminDungeons = $this->user_model->isAdmin();
 	
-	$dungeons = $this->dungeon_model->getAllDungeons($showOnlyPublicDungeons, $showOnlyAdminDungeons, TRUE);
+	$dungeons = $this->dungeon_model->getAllDungeons($showOnlyPublicDungeons, $showOnlyAdminDungeons, FALSE);
 	
 	foreach($dungeons as $dungeon){
 	?>
@@ -64,12 +60,22 @@
 			?>
 			</td>
 			<td>
-				<?php
-					if($dungeon['hasBravery'] == 1){
-						echo "Yes";
-					} else{
-						echo "No";
-					}
+				<?php 
+				echo form_open('dungeons/approve');
+				
+				echo form_hidden('id', $dungeon['id']);
+				echo form_hidden('redirectTo', 'admin');
+				echo form_submit('submit','Approve');
+				echo form_close();
+				?>
+			</td>
+			<td>
+				<?php 
+				echo form_open('dungeons/delete');
+				
+				echo form_hidden('id', $dungeon['id']);
+				echo form_submit('submit','Delete');
+				echo form_close();
 				?>
 			</td>
 		</tr>

@@ -116,7 +116,7 @@ class Dungeons extends CI_Controller {
 				}else{
 					$this->session->set_flashdata('message', "<div class='error'>The creation of the dungeon '$name' failed for some reason.</div>");
 				}
-				redirect('/dungeons');
+				redirect('/admin');
 			}
 		}
 		$data = array(
@@ -264,6 +264,7 @@ class Dungeons extends CI_Controller {
 				}else{
 					$this->session->set_flashdata('message', "<div class='error'>Removing the dungeon failed for some reason. I blame Molgan.</div>");
 				}
+				
 				redirect('/dungeons');
 			}
 		}
@@ -272,6 +273,35 @@ class Dungeons extends CI_Controller {
 				'title' 		=> "KBK - Remove dungeon",
 				'mainContent' 	=> "dungeon_delete_view.php",
 				'description' 	=> "Remove the dungeon",
+				'keyword' 		=> "",
+		);
+		$this->load->view('template.php', $data);
+	}
+	
+	function approve(){
+		if($this->input->post()){
+			$this->form_validation->set_rules('id','The ID','required|integer|xss_clean');
+		
+			if ($this->form_validation->run() == TRUE){
+					
+				$id = $this->input->post('id');
+				$approver = $this->session->userdata('userId');
+				
+				$result = $this->dungeon_model->approveDungeon($id,$approver);
+		
+				if($result){
+					$this->session->set_flashdata('message', "<div class='success'>Dungeon was successfully approved!</div>");
+				}else{
+					$this->session->set_flashdata('message', "<div class='error'>Approving the dungeon failed for some reason. I blame Molgan.</div>");
+				}
+				redirect('/admin');
+			}
+		}
+		
+		$data = array(
+				'title' 		=> "KBK - Approve dungeons",
+				'mainContent' 	=> "dungeon_approve_view.php",
+				'description' 	=> "Approve dungeons",
 				'keyword' 		=> "",
 		);
 		$this->load->view('template.php', $data);

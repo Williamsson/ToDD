@@ -15,6 +15,22 @@
 					<li><a href="<?php echo base_url();?>">Home</a></li>
 					<li><a href="<?php echo base_url();?>dungeons">List of dungeons</a></li>
 					
+					<?php 
+						if(!$this->session->userdata('cachedPages')){
+							$pages = $this->page_model->getPages();
+							$this->session->set_userdata(array('cachedPages' => $pages));
+						}
+						
+						$pages = $this->session->userdata('cachedPages');
+						
+						if(!empty($pages)){
+							foreach($pages as $page){
+								echo "<li><a href='" . base_url() ."page/view/" . $page['id'] ."'>" . $page['title'] . "</a></li>";
+							}
+						}
+					?>
+					
+					
 					<?php if($this->safety_model->hasPermission(array('2', '3'))):?>
 						<li><a href="<?php echo base_url();?>admin">Control panel</a></li>
 					<?php endif;?>

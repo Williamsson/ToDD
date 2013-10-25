@@ -6,12 +6,15 @@
     $("#datepicker").datepicker({ dateFormat: "yy-mm-dd" });
   });
 </script>
+<?php 
+if($this->session->flashdata('message')){
+	echo $this->session->flashdata('message');
+}
+?>
+
 <h1>Add plugin</h1>
 <div class="col-2">
 	<?php 
-		if($this->session->flashdata('message')){
-			echo $this->session->flashdata('message');
-		}
 		echo validation_errors('<div class="error">','</div>');
 		echo form_open('plugins/add');?>
 		
@@ -21,7 +24,7 @@
 		<label for="version">Version:</label><br/>
 			<input name="version" type="text" value="<?php echo set_value('version'); ?>" placeholder="Version"/><br/>
 		
-		<label for="downloadLink">Link to the download:*</label><br/>
+		<label for="downloadLink">Link to the download:</label><br/>
 			<input name="downloadLink" type="text" value="<?php echo set_value('downloadLink'); ?>" placeholder="Download link"/><br/>
 			
 		<label for="wikiLink">Link to the wiki:</label><br/>

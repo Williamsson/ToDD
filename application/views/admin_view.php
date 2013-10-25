@@ -15,7 +15,7 @@ $(document).ready( function() {
 	require_once("admin_left_menu.php");
 ?>
 
-<div id="adminContent">
+<div id="pageContent">
 	<?php 
 		if($this->session->flashdata('message')){
 			echo $this->session->flashdata('message');
@@ -23,7 +23,7 @@ $(document).ready( function() {
 	?>
 	
 	<?php 
-		if($this->dungeon_model->checkUnapprovedDungeons()){
+		if($this->user_model->isAdmin() && $this->dungeon_model->checkUnapprovedDungeons()){
 			echo '<div class="noticeMessage"><a href="' . base_url() .'dungeons/approve">There are unapproved dungeons that await approval!</a></div>';
 		}
 	?>

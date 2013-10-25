@@ -26,7 +26,7 @@ class Plugins extends CI_Controller {
 			$this->form_validation->set_rules('pluginName','Plugin name','required|xss_clean');
 			$this->form_validation->set_rules('version','Version','xss_clean');
 			$this->form_validation->set_rules('updated','Last updated','xss_clean');
-			$this->form_validation->set_rules('downloadLink','Download link','required|xss_clean');
+			$this->form_validation->set_rules('downloadLink','Download link','xss_clean');
 			$this->form_validation->set_rules('wikiLink','Wiki link','xss_clean');
 			$this->form_validation->set_rules('description','Description','required|xss_clean');
 			$this->form_validation->set_rules('active','Active','required|xss_clean');

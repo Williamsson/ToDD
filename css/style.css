@@ -82,7 +82,7 @@ html,body{
 				#lefthandMenu ul li a:hover{
 					background: #cce;
 				}
-	#adminContent{
+	#pageContent{
 		float: right;
 		width: 75%;
 	}

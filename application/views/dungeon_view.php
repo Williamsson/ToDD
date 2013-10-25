@@ -10,7 +10,7 @@
 	} );
 </script>
 <?php 
-	if($this->user_model->isAdmin()){ 
+	if($this->safety_model->hasPermission(array('2','3'))){ 
 		echo "<a href='" . base_url() . "dungeons/add' class='editImage'>Add a dungeon</a><br/><br/>"; 
 	}?>
 	

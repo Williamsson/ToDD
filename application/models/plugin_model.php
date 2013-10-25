@@ -34,14 +34,14 @@ class Plugin_model extends CI_Model{
 	function addPlugin($name, $version, $updated, $dlLink, $wikiLink, $desc, $active, $broken){
 	
 		$data = array(
-				'plugin_name'	=> $name,
-				'version'		=> $version,
-				'last_update'	=> $updated,
-				'link_download'	=> $dlLink,
-				'link_plugin'	=> $wikiLink,
-				'description'	=> $desc,
-				'active'		=> $active,
-				'broken'		=> $broken,
+				'plugin_name'			=> $name,
+				'version'				=> $version,
+				'last_update'			=> $updated,
+				'link_download'			=> $dlLink,
+				'link_plugin'			=> $wikiLink,
+				'plugin_description'	=> $desc,
+				'active'				=> $active,
+				'broken'				=> $broken,
 		);
 	
 		$this->db->insert('plugins', $data);

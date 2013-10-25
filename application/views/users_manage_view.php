@@ -9,46 +9,53 @@
 		$('#table-3').dataTable();
 	} );
 </script>
-<h1>Manage users</h1>
+
 <?php 
-	$users = $this->user_model->getUserList();
-	if($this->session->flashdata('message')){
-		echo $this->session->flashdata('message');
-	}
+	require_once("admin_left_menu.php");
 ?>
-<table id="table-3">
-	<thead>
-		<tr>
-			<th>Username</th>
-			<th>Description</th>
-			<th>Set permission level</th>
-			<th>Remove</th>
-		</tr>
-	</thead>
+
+<div id="pageContent">
+	<h1>Manage users</h1>
 	<?php 
-		foreach($users as $user){?>
+		$users = $this->user_model->getUserList();
+		if($this->session->flashdata('message')){
+			echo $this->session->flashdata('message');
+		}
+	?>
+	<table id="table-3">
+		<thead>
 			<tr>
-				<td><?php echo $user['username'];?></td>
-				<td><?php echo $user['desc'];?></td>
-				<td>
-					<?php 
-						$permissionLevels = $this->safety_model->getAllPermissions();
-						echo form_open('user/updatePermission');
-						
-						$options = array();
-						foreach($permissionLevels as $perm){
-							$options[$perm['id']] = $perm['name'];
-						}
-						echo form_dropdown('permission',$options,$user['permission']);
-						echo form_hidden('id', $user['id']);
-	 					echo form_submit('submit','OK');
-						echo form_close();
-					?>
-				</td>
-				<td>
-					<a class='removeImage' href="<?php echo base_url() . 'user/delete/' . $user['id'] . '/' . $user['username'];?>">Remove</a>
-				</td>
+				<th>Username</th>
+				<th>Description</th>
+				<th>Set permission level</th>
+				<th>Remove</th>
 			</tr>
-<?php 	}
-	?>		
-</table>
+		</thead>
+		<?php 
+			foreach($users as $user){?>
+				<tr>
+					<td><?php echo $user['username'];?></td>
+					<td><?php echo $user['desc'];?></td>
+					<td>
+						<?php 
+							$permissionLevels = $this->safety_model->getAllPermissions();
+							echo form_open('user/updatePermission');
+							
+							$options = array();
+							foreach($permissionLevels as $perm){
+								$options[$perm['id']] = $perm['name'];
+							}
+							echo form_dropdown('permission',$options,$user['permission']);
+							echo form_hidden('id', $user['id']);
+		 					echo form_submit('submit','OK');
+							echo form_close();
+						?>
+					</td>
+					<td>
+						<a class='removeImage' href="<?php echo base_url() . 'user/delete/' . $user['id'] . '/' . $user['username'];?>">Remove</a>
+					</td>
+				</tr>
+	<?php 	}
+		?>		
+	</table>
+</div>

@@ -26,7 +26,7 @@ class Dungeons extends CI_Controller {
 	}
 	
 	public function add(){
-		if(!$this->safety_model->isLoggedIn() || !$this->user_model->isAdmin()){
+		if(!$this->safety_model->isLoggedIn() || !$this->safety_model->hasPermission(array('2','3'))){
 			$this->session->set_flashdata('message', "<div class='error'>You don't have permission to do that.</div>");
 			redirect('admin');
 		}
@@ -279,6 +279,11 @@ class Dungeons extends CI_Controller {
 	}
 	
 	function approve(){
+		if(!$this->safety_model->isLoggedIn() || !$this->user_model->isAdmin()){
+			$this->session->set_flashdata('message', "<div class='error'>You don't have permission to do that!</div>");
+			redirect('admin');
+		}
+		
 		if($this->input->post()){
 			$this->form_validation->set_rules('id','The ID','required|integer|xss_clean');
 		

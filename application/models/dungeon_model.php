@@ -71,7 +71,6 @@ class Dungeon_model extends CI_Model{
 		$this->db->where('temple_id', $id);
 		$this->db->delete('temple_plugins'); 
 		
-		
 		if($plugins){
 			$data = array();
 			foreach($plugins as $plugin){

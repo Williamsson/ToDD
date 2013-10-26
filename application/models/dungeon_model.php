@@ -31,11 +31,13 @@ class Dungeon_model extends CI_Model{
 		$this->db->insert('temple_approvals',$data);
 		
 		if($plugins){
+			echo "<pre>";
 			$data = array();
 			foreach($plugins as $plugin){
+				
 				$data[] = array(
 					'temple_id'	=> $dungeonId,
-					'plugin_id'	=> $plugin['id']
+					'plugin_id'	=> $plugin
 				);
 			}
 			

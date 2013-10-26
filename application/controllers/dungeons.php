@@ -88,7 +88,6 @@ class Dungeons extends CI_Controller {
 					$this->image_lib->resize();
 				}
 				
-				
 				$name = $this->input->post('dungeonName');
 				$desc = $this->input->post('description');
 				$other = $this->input->post('other');
@@ -106,6 +105,7 @@ class Dungeons extends CI_Controller {
 				$costBravery = $this->input->post('costBravery');
 				
 				$plugins = $this->input->post('plugins');
+				
 				$responsible = $this->session->userdata('userId');
 				
 				$result = $this->dungeon_model->addDungeon($name, $entrancePosX, $entrancePosY, $entrancePosZ, $desc, $other, $plugins, 

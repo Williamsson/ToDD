@@ -78,7 +78,7 @@ class Dungeon_model extends CI_Model{
 			foreach($plugins as $plugin){
 				$data[] = array(
 					'temple_id'	=> $id,
-					'plugin_id'	=> $plugin['id']
+					'plugin_id'	=> $plugin
 				);
 			}
 			
